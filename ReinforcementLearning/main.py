@@ -16,8 +16,16 @@ def initial_state():
             else:
                 j.append(0)
         k += 1
+    k = 0
+    real_q_table = [[], [], [], []]
+    for i in real_q_table:
+        for j in range(0, 48):
+            i.append(0)
+    learningRate = 0, 1
+    discount = 0, 8
+    nrMaxEpisodes = 100
+    return [3, 0], q_table, my_reward, learningRate, discount, nrMaxEpisodes, real_q_table
 
-    return [3, 0], q_table, my_reward
 
 def nextState(ijagent, table, reward, action):
 
@@ -58,7 +66,11 @@ if __name__ == '__main__':
 
     f = open("moves.txt", "w")
 
-    ijAgent, qTable, myReward = initial_state()
+    ijAgent, qTable, myReward, learningRate, discount, nrMaxEpisodes, realTable = initial_state()
+    print("The learning rate is ", learningRate)
+    print("The discount rate is ", discount)
+    print("The number of episodes is ", nrMaxEpisodes)
+    print(realTable)
     printTable(qTable, ijAgent, myReward)
 
     action = 'U'
